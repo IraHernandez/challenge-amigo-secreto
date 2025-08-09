@@ -1,48 +1,50 @@
-const amigos = [];
-const soloLetras = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/;
+let amigos = [];
 
 function agregarAmigo() {
     const input = document.getElementById("amigo");
     const nombre = input.value.trim();
 
     if (nombre === "") {
-        alert("Por favor, inserte un nombre.");
+        alert("Por favor, ingresa un nombre.");
         return;
     }
 
-    if (!soloLetras.test(nombre)) {
-        alert("Solo se permiten letras y espacios.");
+    // Validar que no esté repetido
+    if (amigos.includes(nombre)) {
+        alert("Ese nombre ya está en la lista.");
+        input.value = "";
         return;
     }
 
     amigos.push(nombre);
-    mostrarListaAmigos();
     input.value = "";
+    mostrarLista();
 }
 
-function mostrarListaAmigos() {
+function mostrarLista() {
     const lista = document.getElementById("listaAmigos");
     lista.innerHTML = "";
+
     amigos.forEach(amigo => {
-        lista.innerHTML += `<li>${amigo}</li>`;
+        const li = document.createElement("li");
+        li.textContent = amigo;
+        lista.appendChild(li);
     });
 }
 
 function sortearAmigo() {
     if (amigos.length === 0) {
-        alert("No hay amigos para sortear.");
+        alert("No hay nombres para sortear.");
         return;
     }
 
-    const indiceAleatorio = Math.floor(Math.random() * amigos.length);
-    const amigoSorteado = amigos[indiceAleatorio];
-    const resultado = document.getElementById("resultado");
-    resultado.innerHTML = `<li>${amigoSorteado}</li>`;
+    const nombre = amigos[Math.floor(Math.random() * amigos.length)];
+    document.getElementById("resultado").textContent = `🎉 El amigo secreto es: ${nombre}`;
 }
 
 function reiniciarJuego() {
-    amigos.length = 0;
+    amigos = [];
     document.getElementById("listaAmigos").innerHTML = "";
-    document.getElementById("resultado").innerHTML = "";
+    document.getElementById("resultado").textContent = "";
     document.getElementById("amigo").value = "";
 }
