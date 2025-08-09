@@ -39,3 +39,10 @@ function sortearAmigo() {
     const resultado = document.getElementById("resultado");
     resultado.innerHTML = `<li>${amigoSorteado}</li>`;
 }
+
+function reiniciarJuego() {
+    amigos.length = 0;
+    document.getElementById("listaAmigos").innerHTML = "";
+    document.getElementById("resultado").innerHTML = "";
+    document.getElementById("amigo").value = "";
+}

@@ -88,8 +88,11 @@ body {
 }
 
 .button-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
     width: 300px;
-    justify-content: center;
+    align-items: center;
 }
 
 /* Estilos de entrada de texto */
