@@ -19,3 +19,15 @@ function agregarAmigo() {
 
   input.value = "";
 }
+
+function mostrarListaAmigos() {
+  const lista = document.getElementById("listaAmigos");
+
+  // Limpiar la lista antes de agregar
+  lista.innerHTML = "";
+
+  // Recorrer el array y agregar cada amigo como <li>
+  for (let i = 0; i < amigos.length; i++) {
+    lista.innerHTML += `<li>${amigos[i]}</li>`;
+  }
+}
